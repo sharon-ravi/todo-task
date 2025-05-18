@@ -1,0 +1,136 @@
+/* frontend/src/App.css */
+
+/* Basic body resets and global font */
+body {
+  font-family: 'Poppins', sans-serif; /* Example font - ensure it's loaded */
+  margin: 0;
+  min-height: 100vh; /* Ensure body takes at least full viewport height */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Keeps background static during scroll */
+  display: flex; /* Helps with overall layout, especially if you have a footer */
+  flex-direction: column;
+  transition: background-image 0.3s ease-in-out; /* Smooth transition if supported */
+}
+
+/* General overlay for readability - adjust as needed per background */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2); /* Default very subtle dark overlay */
+  z-index: -1; /* Place it behind all other content */
+  transition: background-color 0.3s ease-in-out;
+}
+
+/* --- Specific Background Classes and their Overlays --- */
+
+/* Landing Page Background */
+.landing-bg {
+  /* Example: A welcoming, abstract, or scenic image */
+  background-image: url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8d2VsY29tZXxlbnwwfHwwfHx8MA&auto=format&fit=crop&w=1400&q=60');
+}
+.landing-bg::before {
+  background-color: rgba(0, 0, 0, 0.35); /* Slightly darker overlay for landing page text contrast */
+}
+
+/* Authentication Pages (Login/Register) Background */
+.auth-bg {
+  /* Example: A more focused, perhaps slightly blurred or simpler background */
+  background-image: url('https://images.unsplash.com/photo-1557682250-33bd709cbe85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGFic3RyYWN0JTIwYmx1cnxlbnwwfHwwfHx8MA&auto=format&fit=crop&w=1400&q=60');
+}
+.auth-bg::before {
+  background-color: rgba(0, 0, 0, 0.5); /* Darker overlay for auth forms */
+}
+
+/* --- App Section Backgrounds --- */
+/* You can have a common one or unique ones */
+
+/* Default for App sections if no specific one matches */
+.app-default-bg {
+  /* Example: A clean, productive, or subtly textured background */
+  background-image: url('https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8d29yayUyMGRlc2t8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1400&q=60');
+}
+.app-default-bg::before {
+  background-color: rgba(255, 255, 255, 0.3); /* Light overlay for better content readability in app */
+}
+
+/* Specific App Page Backgrounds (can override .app-default-bg if more specific) */
+.app-tasks-bg { /* Could be same as app-default-bg or unique */
+  background-image: url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8b2ZmaWNlJTIwZGVza3xlbnwwfHwwfHx8MA&auto=format&fit=crop&w=1400&q=60');
+}
+.app-tasks-bg::before {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.app-profile-bg {
+  background-image: url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHByb2ZpbGUlMjBzZXR0aW5nc3xlbnwwfHwwfHx8MA&auto=format&fit=crop&w=1400&q=60');
+}
+.app-profile-bg::before {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.app-today-bg {
+  /* Example: Bright, focused, morning vibe */
+  background-image: url('https://images.unsplash.com/photo-1489533119213-66a5cd877091?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bW9ybmluZyUyMGRlc2t8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1400&q=60');
+}
+.app-today-bg::before {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.app-important-bg {
+  /* Example: Could be more vibrant or have a subtle "important" cue */
+  background-image: url('https://images.unsplash.com/photo-1508615039623-a25605d2b022?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHZpYnJhbnQlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww&auto=format&fit=crop&w=1400&q=60');
+}
+.app-important-bg::before {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Fallback background if no class matches */
+.default-bg {
+  background-color: #f0f2f5; /* A plain light gray */
+}
+.default-bg::before {
+  background-color: transparent; /* No overlay for the plain fallback */
+}
+
+/* Ensure content is above the overlay */
+#root {
+  flex-grow: 1; /* Allow #root to fill space if body is flex */
+  z-index: 1; /* Ensure #root content is above the body::before pseudo-element */
+}
+
+/* frontend/src/App.css */
+.task-item:hover {
+  background-color: #f8f9fa; /* Slight hover effect */
+}
+.task-completed .task-text {
+  text-decoration: line-through;
+  color: #6c757d;
+}
+.task-checkbox {
+  transform: scale(1.1); /* Slightly larger checkbox */
+}
+.task-text {
+  cursor: default; /* Or pointer if you plan to make it clickable for editing */
+}
+.task-actions button.btn-link { /* Style link buttons used as icon buttons */
+    text-decoration: none;
+    padding: 0.25rem 0.4rem !important; /* More padding for easier click */
+}
+.task-actions .text-muted:hover {
+    color: #495057 !important; /* Darken muted icons on hover */
+}
+.task-actions .text-warning:hover {
+    filter: brightness(90%);
+}
+.task-actions .text-primary:hover {
+    filter: brightness(90%);
+}
+.task-actions .text-danger:hover {
+    filter: brightness(90%);
+}
